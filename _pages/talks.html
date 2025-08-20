@@ -6,12 +6,9 @@ author_profile: true
 ---
 
 {% comment %}
-List all talks on one page in reverse chronological order, with no links.
-Works with AcademicPages-style talk front matter:
-title, date, venue (or event), location, talk_type, etc.
+List all talks, no per-talk links, without using a 'date' field.
+Relies on 'display_date' (e.g., "April 2025") and 'sort_key' ("2025-04").
 {% endcomment %}
-
-{% assign talks_sorted = site.talks | sort: "date" | reverse %}
 
 {% if site.talkmap_link == true %}
   <p style="text-decoration:underline;">
@@ -19,27 +16,21 @@ title, date, venue (or event), location, talk_type, etc.
   </p>
 {% endif %}
 
+{%- assign talks_sorted = site.talks | sort: "sort_key" | reverse -%}
+
 <ul class="talk-list" style="list-style:none; padding-left:0;">
-  {% for t in talks_sorted %}
-    <li style="margin-bottom:1.0rem;">
-      <span class="talk-date">{{ t.date | date: "%B %Y" }}</span>
+  {%- for t in talks_sorted -%}
+    <li style="margin-bottom:1rem;">
+      <span class="talk-date">{{ t.display_date }}</span>
       <span> — </span>
       <strong>
-        {%- if t.venue -%}{{ t.venue }}
-        {%- elsif t.host -%}{{ t.host }}
-        {%- elsif t.institution -%}{{ t.institution }}
-        {%- else -%}{{ t.location }}{%- endif -%}
-      </strong>
-      {%- if t.talk_type or t.event -%}
-        : {{ t.talk_type | default: t.event }}
-      {%- endif -%}
+        {{ t.venue | default: t.institution | default: t.host | default: t.location }}
+      </strong>{% if t.talk_type or t.event %}: {{ t.talk_type | default: t.event }}{% endif %}
       <br>
-      <em>
-        {%- if t.title -%}{{ t.title }}{%- endif -%}
-      </em>
-      {%- if t.location and (t.location != t.venue) and (t.location != t.host) -%}
+      <em>{{ t.title }}</em>
+      {%- if t.location and t.location != t.venue and t.location != t.institution and t.location != t.host -%}
         <br><span class="talk-location">{{ t.location }}</span>
       {%- endif -%}
     </li>
-  {% endfor %}
+  {%- endfor -%}
 </ul>
