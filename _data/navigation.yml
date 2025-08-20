@@ -7,15 +7,6 @@
 # NOTE that only one of the CV options should be selected, the first is for the
 #      Markdown formatted page while the second is generated using JSON.
 
----
-layout: home        # or: layout: single
-title: "About Me"   # optional
-permalink: /        # or /about/
-author_profile: true
-author: vincent
----
-
-
 main:
   - title: "Publications"
     #url: /publications/
