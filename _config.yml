@@ -9,8 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default"
-title                    : "Vincent Lee"
-masthead_title           : "About"   # overrides the top-left masthead text
+title                    : "About"
 title_separator          : "-"
 name                     : &name "Vincent Lee"
 description              : &description "personal description"
