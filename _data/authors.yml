@@ -16,3 +16,9 @@ Name2 Name2:
   avatar      : "bio-photo.jpg"
   twitter     : "name2"
   google_plus : "Name"
+
+vincent:
+  name: "Vincent Lee"
+  email: "vincentszehimlee@berkeley.edu"
+  bio: "Postdoctoral Scholar in High-energy Theory"
+  avatar: "profile_picture.jpg"   # file lives in /images/
